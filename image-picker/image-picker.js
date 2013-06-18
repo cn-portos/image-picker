@@ -100,7 +100,6 @@
     };
 
     ImagePicker.prototype.create_picker = function() {
-      console.log(this.opts);  
       var option, _i, _len, _ref;
       this.picker = jQuery("<ul class='"+this.opts.css_ul_classes.join(" ")+"'></ul>");
       this.picker_options = (function() {
@@ -213,11 +212,11 @@
     };
 
     ImagePickerOption.prototype.mark_as_selected = function() {
-      return this.node.find(this.opts.css_container_id_class).addClass(this.opts.css_selected_class);
+      return this.node.find("."+this.opts.css_container_id_class).addClass(this.opts.css_selected_class);
     };
 
     ImagePickerOption.prototype.unmark_as_selected = function() {
-      return this.node.find(this.opts.css_container_id_class).removeClass(this.opts.css_selected_class);
+      return this.node.find("."+this.opts.css_container_id_class).removeClass(this.opts.css_selected_class);
     };
 
     ImagePickerOption.prototype.value = function() {
