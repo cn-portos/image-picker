@@ -37,7 +37,7 @@
       selected: void 0,
       limit: void 0,
       limit_reached: void 0,
-      css_list_classes: ["thumbnails", "image_picker_selector"],
+      css_list_classes: ["thumbnails", "image_picker_selector"]
     };
     return jQuery.extend(default_options, opts);
   };
