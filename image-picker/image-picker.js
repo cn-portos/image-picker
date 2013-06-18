@@ -37,7 +37,16 @@
       selected: void 0,
       limit: void 0,
       limit_reached: void 0,
-      css_list_classes: ["thumbnails", "image_picker_selector"]
+      // Use parameterized css selectors for easier customization
+      // and integration into existing css frameworks
+      // Functionality is unchanged by default
+      css_ul_classes: ["thumbnails", "image_picker_selector"],
+      css_li_classes: [],
+      css_container_classes: [],
+      css_container_id_class: "thumbnail",
+      css_selected_class: "selected",
+      dom_image_attribute: "img-src",
+      dom_label_attribute: "img-label"
     };
     return jQuery.extend(default_options, opts);
   };
@@ -93,7 +102,7 @@
     ImagePicker.prototype.create_picker = function() {
       console.log(this.opts);  
       var option, _i, _len, _ref;
-      this.picker = jQuery("<ul class='thumbnails image_picker_selector'></ul>");
+      this.picker = jQuery("<ul class='"+this.opts.join(" ")+"'></ul>");
       this.picker_options = (function() {
         var _i, _len, _ref, _results;
         _ref = this.select.find("option");
@@ -186,7 +195,7 @@
     }
 
     ImagePickerOption.prototype.has_image = function() {
-      return this.option.data("img-src") != null;
+      return this.option.data(this.opts.dom_image_attribute) != null;
     };
 
     ImagePickerOption.prototype.is_blank = function() {
@@ -204,11 +213,11 @@
     };
 
     ImagePickerOption.prototype.mark_as_selected = function() {
-      return this.node.find(".thumbnail").addClass("selected");
+      return this.node.find(this.opts.css_container_id_class).addClass(this.opts.css_selected_class);
     };
 
     ImagePickerOption.prototype.unmark_as_selected = function() {
-      return this.node.find(".thumbnail").removeClass("selected");
+      return this.node.find(this.opts.css_container_id_class).removeClass(this.opts.css_selected_class);
     };
 
     ImagePickerOption.prototype.value = function() {
@@ -216,8 +225,8 @@
     };
 
     ImagePickerOption.prototype.label = function() {
-      if (this.option.data("img-label")) {
-        return this.option.data("img-label");
+      if (this.option.data(this.opts.dom_label_attribute)) {
+        return this.option.data(this.opts.dom_label_attribute);
       } else {
         return this.option.text();
       }
@@ -235,10 +244,10 @@
 
     ImagePickerOption.prototype.create_node = function() {
       var image, thumbnail;
-      this.node = jQuery("<li/>");
+      this.node = jQuery("<li class='"+this.opts.css_li_classes.join(" ")+"'/>");
       image = jQuery("<img class='image_picker_image'/>");
-      image.attr("src", this.option.data("img-src"));
-      thumbnail = jQuery("<div class='thumbnail'>");
+      image.attr("src", this.option.data(this.opts.dom_image_attribute));
+      thumbnail = jQuery("<div class='"+this.opts.css_container_id_class+" "+this.opts.css_container_classes.join(" ")+"'>");
       thumbnail.click({
         option: this
       }, function(event) {
