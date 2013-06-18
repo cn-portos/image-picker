@@ -49,7 +49,7 @@
       dom_label_attribute: "img-label",
       dom_container_type: "div",
       dom_label_wrapper: "p",
-      css_label_classes: array[]
+      css_label_classes: []
     };
     return jQuery.extend(default_options, opts);
   };
