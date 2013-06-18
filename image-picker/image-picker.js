@@ -47,7 +47,9 @@
       css_selected_class: "selected",
       dom_image_attribute: "img-src",
       dom_label_attribute: "img-label",
-      dom_container_type: "div"
+      dom_container_type: "div",
+      dom_label_wrapper: "p",
+      css_label_classes: array[]
     };
     return jQuery.extend(default_options, opts);
   };
@@ -255,7 +257,7 @@
       });
       thumbnail.append(image);
       if (this.opts.show_label) {
-        thumbnail.append(jQuery("<p/>").html(this.label()));
+        thumbnail.append(jQuery("<"+this.opts.dom_label_wrapper+"/>").addClass(this.opts.css_label_classes.join(" ")).html(this.label()));
       }
       this.node.append(thumbnail);
       return this.node;
