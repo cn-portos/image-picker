@@ -1,0 +1,6 @@
+{
+  "name": "cn-portos/image-picker",
+  "type": "library",
+  "description": "Transform HTML select lists into clickable image boxes",
+  "target-dir": "cn-portos/image-picker"
+}
