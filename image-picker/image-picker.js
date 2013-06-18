@@ -46,7 +46,8 @@
       css_container_id_class: "thumbnail",
       css_selected_class: "selected",
       dom_image_attribute: "img-src",
-      dom_label_attribute: "img-label"
+      dom_label_attribute: "img-label",
+      dom_container_type: "div"
     };
     return jQuery.extend(default_options, opts);
   };
@@ -246,7 +247,7 @@
       this.node = jQuery("<li class='"+this.opts.css_li_classes.join(" ")+"'/>");
       image = jQuery("<img class='image_picker_image'/>");
       image.attr("src", this.option.data(this.opts.dom_image_attribute));
-      thumbnail = jQuery("<div class='"+this.opts.css_container_id_class+" "+this.opts.css_container_classes.join(" ")+"'>");
+      thumbnail = jQuery("<"+this.opts.dom_container_type+" class='"+this.opts.css_container_id_class+" "+this.opts.css_container_classes.join(" ")+"'>");
       thumbnail.click({
         option: this
       }, function(event) {
