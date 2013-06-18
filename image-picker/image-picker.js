@@ -36,7 +36,8 @@
       clicked: void 0,
       selected: void 0,
       limit: void 0,
-      limit_reached: void 0
+      limit_reached: void 0,
+      css_list_classes: ["thumbnails", "image_picker_selector"],
     };
     return jQuery.extend(default_options, opts);
   };
@@ -90,6 +91,7 @@
     };
 
     ImagePicker.prototype.create_picker = function() {
+      console.log(this.opts);  
       var option, _i, _len, _ref;
       this.picker = jQuery("<ul class='thumbnails image_picker_selector'></ul>");
       this.picker_options = (function() {
